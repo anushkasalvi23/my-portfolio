@@ -1,26 +1,67 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Use the desktop composition on laptops too; the page zoom makes it fit. */
+@theme {
+  --breakpoint-xl: 64rem;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-cream: #fefff0;
+  --color-ink: #0c0c0c;
+  --color-sun: #ffdc58;
+  --color-coral: #ff6258;
+  --color-sky: #bae6ff;
+  --color-blush: #ffc9f0;
+  --color-rose: #f3abcb;
+
+  --font-sans: var(--font-space-grotesk);
+  --font-grotesk: var(--font-space-grotesk);
+  --font-inter: var(--font-inter);
+  --font-pixel: var(--font-handjet);
+  --font-handlee: var(--font-handlee);
+  --font-scribble: var(--font-just-me);
+  --font-dm-mono: var(--font-dm-mono);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: #000;
+  /* Figma's "auto" line height maps to CSS `normal`, not Tailwind's 1.5. */
+  line-height: normal;
+}
+
+/*
+ * The design is drawn at 1440px and 1:1 it reads oversized on laptop screens.
+ * Zoom the page down so the whole composition fits comfortably; media queries
+ * still use the real viewport width.
+ */
+@media (min-width: 1024px) {
+  .page-scale {
+    zoom: 0.62;
+  }
+}
+@media (min-width: 1280px) {
+  .page-scale {
+    zoom: 0.66;
+  }
+}
+@media (min-width: 1440px) {
+  .page-scale {
+    zoom: 0.7;
+  }
+}
+@media (min-width: 1680px) {
+  .page-scale {
+    zoom: 0.8;
+  }
+}
+@media (min-width: 1920px) {
+  .page-scale {
+    zoom: 0.9;
+  }
 }
