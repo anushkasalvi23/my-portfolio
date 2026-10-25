@@ -22,10 +22,50 @@
   --font-scribble: var(--font-just-me);
   --font-dm-mono: var(--font-dm-mono);
   --font-mono: var(--font-jetbrains-mono);
+
+  --animate-blink: blink 1.05s steps(1) infinite;
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+/*
+ * The hero intro (see PageAnimations) reveals these itself; hide them until it
+ * runs so they don't flash in their final state first. <noscript> undoes this.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  #top [data-anim]:not([data-anim="pulse"]) {
+    visibility: hidden;
+  }
+}
+
+/*
+ * Intro loader: IntroLoader's inline script sets data-intro="playing" before
+ * first paint when it should show. Otherwise (repeat visit, reduced motion,
+ * no JS) it never appears.
+ */
+html:not([data-intro="playing"]) [data-intro-loader] {
+  display: none;
+}
+
+/*
+ * Pusheen cursor (toggled by CatCursor): typing while the mouse moves, asleep
+ * when it stops. Applied to every element so links and buttons keep the cat
+ * instead of switching to the hand pointer.
+ */
+html.cat-cursor,
+html.cat-cursor * {
+  cursor: url("/cursors/pusheen-typing.cur"), auto !important;
+}
+html.cat-cursor.cat-sleeping,
+html.cat-cursor.cat-sleeping * {
+  cursor: url("/cursors/pusheen-sleeping.cur"), auto !important;
 }
 
 body {

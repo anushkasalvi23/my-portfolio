@@ -39,7 +39,7 @@ function GraphPaper() {
           <Fill src="/figma/grid-verti-lines.svg" />
         </div>
       </div>
-      <div className="absolute top-[-30.85px] left-[-3.28px] h-[978.76px] w-[1290.496px] opacity-50">
+      <div data-anim="cells" className="absolute top-[-30.85px] left-[-3.28px] h-[978.76px] w-[1290.496px] opacity-50">
         {blocks.map(([left, top, width, height, color], i) => (
           <span key={i} className="absolute" style={{ left, top, width, height, backgroundColor: color }} />
         ))}
@@ -53,6 +53,7 @@ export function Experience() {
     <section className="relative pt-20 xl:h-[1029px] xl:pt-0">
       <div className="flex items-center gap-4 px-4 sm:px-8 xl:contents">
         <h2
+          data-anim="heading"
           className={`text-[36px] leading-[normal] font-medium whitespace-nowrap text-black md:text-[49px] ${PIN}`}
           style={pin(76, 119)}
         >
@@ -68,6 +69,7 @@ export function Experience() {
         inner={[107.755, 48.7]}
         transform="rotate(-32.26deg) scaleY(-1)"
         desktopOnly
+        anim="draw"
         className="pointer-events-none absolute z-10"
         style={at(831, 173)}
       >
@@ -80,6 +82,7 @@ export function Experience() {
           {experience.map((job, i) => (
             <li
               key={job.company}
+              data-anim="reveal"
               className={`grid gap-6 xl:grid-cols-[minmax(0,1fr)_48px_688px] xl:gap-0 ${i === 0 ? "xl:h-[400px]" : ""}`}
             >
               <div className="flex flex-col gap-[14px] whitespace-nowrap max-sm:whitespace-normal">
@@ -94,12 +97,13 @@ export function Experience() {
                     box={[3, 429]}
                     inner={[429, 3]}
                     transform="rotate(89.93deg)"
+                    anim="timeline"
                     className="absolute top-0 left-[22.75px]"
                   >
                     <Fill src="/figma/timeline-line.svg" />
                   </Rotated>
                 )}
-                <span className="relative block size-[48px]">
+                <span data-anim="dot" className="relative block size-[48px]">
                   <Fill src={job.dot} inset="-2.08%" />
                 </span>
               </div>

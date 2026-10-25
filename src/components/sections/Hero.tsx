@@ -1,19 +1,7 @@
 import Image from "next/image";
 import { links } from "@/data/portfolio";
-import {
-  at,
-  CurlyArrow,
-  Fill,
-  Logo,
-  PIN,
-  pin,
-  Rotated,
-  SelectionHandles,
-  Starburst,
-  Sticker,
-  SunSticker,
-  ThickRule,
-} from "../primitives";
+import { Magnetic } from "../motion/Interactive";
+import { at, CurlyArrow, Fill, Logo, PIN, pin, Rotated, SelectionHandles, Starburst, Sticker, SunSticker, ThickRule } from "../primitives";
 
 const navItems = [
   // Cell widths and text insets match the design's divider positions.
@@ -53,6 +41,7 @@ function Navbar() {
   return (
     <nav
       aria-label="Primary"
+      data-anim="nav"
       className={`relative flex h-[64px] w-full max-w-[753px] items-stretch border-5 border-black bg-cream drop-shadow-[6px_6px_0px_rgba(0,0,0,0.25)] md:h-[80px] ${PIN}`}
       style={pin(131, 26)}
     >
@@ -60,10 +49,7 @@ function Navbar() {
         <Logo />
       </div>
       {navItems.map((item) => (
-        <div
-          key={item.label}
-          className={`relative flex w-[84px] items-center justify-center sm:w-[110px] md:justify-start ${item.cell}`}
-        >
+        <div key={item.label} className={`relative flex w-[84px] items-center justify-center sm:w-[110px] md:justify-start ${item.cell}`}>
           <span aria-hidden className="absolute -top-[3px] left-[-2px] h-[calc(100%+8px)] w-[4px]">
             <Image
               src={item.divider}
@@ -91,27 +77,31 @@ function Navbar() {
 
 function SocialLinks() {
   return (
-    <ul className={`hidden gap-[13px] lg:flex ${PIN}`} style={pin(1127, 33)}>
+    <ul data-anim="socials" className={`hidden gap-[13px] lg:flex ${PIN}`} style={pin(1127, 33)}>
       {socials.map((s) => (
         <li key={s.label}>
-          <a
-            href={s.href}
-            aria-label={s.label}
-            className="relative block size-[64px] transition-transform duration-200 hover:-translate-y-1"
-          >
-            <Fill src="/figma/social-circle-shadow.svg" inset="0 -6.25% -12.5% -6.25%" />
-            <span className="absolute top-[2px] left-[3px] size-[59px]">
-              <Fill src={s.bg} />
-            </span>
-            <Image
-              src={s.icon.src}
-              alt=""
-              width={s.icon.width}
-              height={s.icon.height}
-              className="absolute object-contain"
-              style={{ left: s.icon.left, top: s.icon.top, width: s.icon.width, height: s.icon.height }}
-            />
-          </a>
+          <Magnetic strength={0.45}>
+            <a
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={s.label}
+              className="relative block size-[64px] transition-transform duration-200 hover:-translate-y-1"
+            >
+              <Fill src="/figma/social-circle-shadow.svg" inset="0 -6.25% -12.5% -6.25%" />
+              <span className="absolute top-[2px] left-[3px] size-[59px]">
+                <Fill src={s.bg} />
+              </span>
+              <Image
+                src={s.icon.src}
+                alt=""
+                width={s.icon.width}
+                height={s.icon.height}
+                className="absolute object-contain"
+                style={{ left: s.icon.left, top: s.icon.top, width: s.icon.width, height: s.icon.height }}
+              />
+            </a>
+          </Magnetic>
         </li>
       ))}
     </ul>
@@ -128,6 +118,7 @@ function NameBox() {
   const bottom = "calc(1.2487em - 2px)";
   return (
     <div
+      data-anim="name"
       className={`relative h-[1.3821em] w-[3.0491em] border-2 border-coral text-[96px] sm:text-[140px] xl:text-[175px] ${PIN}`}
       style={pin(451.2, 276.48)}
     >
@@ -149,10 +140,12 @@ function PillLink({
   href,
   children,
   color,
+  newTab = true,
   className = "",
   style,
 }: {
   href: string;
+  newTab?: boolean;
   children: React.ReactNode;
   color: string;
   className?: string;
@@ -161,6 +154,8 @@ function PillLink({
   return (
     <a
       href={href}
+      target={newTab ? "_blank" : undefined}
+      rel={newTab ? "noopener noreferrer" : undefined}
       className={`flex h-[64px] w-[180px] items-center justify-center gap-[10px] rounded-[92px] border-[6px] border-black text-[22px] font-bold whitespace-nowrap text-black transition-transform duration-200 hover:-translate-y-1 sm:h-[79.367px] sm:w-[222.843px] sm:border-8 sm:text-[29px] ${className}`}
       style={{ backgroundColor: color, ...style }}
     >
@@ -183,6 +178,7 @@ export function Hero() {
       <ThickRule className="mt-[19px] xl:absolute xl:inset-x-0 xl:top-[125px] xl:mt-0" />
 
       <div
+        data-anim="myname"
         className={`relative mt-10 text-center font-scribble text-[40px] leading-[0.995] whitespace-nowrap text-black xl:mt-0 xl:w-[163px] xl:text-left xl:text-[50px] ${PIN}`}
         style={pin(645, 156)}
       >
@@ -192,6 +188,7 @@ export function Hero() {
           alt=""
           width={114}
           height={14}
+          data-anim="draw"
           className="mx-auto mt-1 h-[14px] w-[114px] max-w-none xl:absolute xl:top-[60px] xl:left-[32px] xl:mt-0"
         />
       </div>
@@ -203,7 +200,11 @@ export function Hero() {
 
       <div className="relative z-20 mt-10 flex flex-col items-center gap-8 px-4 xl:absolute xl:inset-0 xl:mt-0 xl:block xl:p-0">
         {/* Decorations (desktop composition only) */}
-        <div className="absolute hidden size-[92.011px] rounded-[50px] border-2 border-black bg-sun xl:block" style={at(209, 197)}>
+        <div
+          data-anim="pop"
+          className="absolute hidden size-[92.011px] rounded-[50px] border-2 border-black bg-sun xl:block"
+          style={at(209, 197)}
+        >
           <Image
             src="/figma/icon-lightbulb.svg"
             alt=""
@@ -224,6 +225,7 @@ export function Hero() {
           inner={[83.6, 33.9]}
           transform="rotate(-38.06deg) skewX(0.33deg)"
           desktopOnly
+          anim="draw"
           className="pointer-events-none absolute"
           style={at(317, 411)}
         >
@@ -243,6 +245,7 @@ export function Hero() {
           inner={[27.399, 57.307]}
           transform="rotate(32.89deg)"
           desktopOnly
+          anim="draw"
           className="pointer-events-none absolute"
           style={at(954, 887)}
         >
@@ -252,28 +255,38 @@ export function Hero() {
         <NameBox />
 
         <p
+          data-anim="tagline"
           className={`flex items-center gap-[12px] font-dm-mono text-[16px] leading-[0.995] font-medium text-black sm:gap-[19px] sm:text-[26px] ${PIN}`}
           style={pin(436, 559)}
         >
-          <Image src="/figma/status-dot.svg" alt="" width={22} height={22} className="size-[14px] sm:size-[22px]" />
+          <Image src="/figma/status-dot.svg" alt="" width={22} height={22} data-anim="pulse" className="size-[14px] sm:size-[22px]" />
           Open to new work and good problems
         </p>
 
         <p
+          data-anim="headline"
           className={`max-w-[766px] text-center font-inter text-[40px] font-medium leading-[1] text-[#191510] sm:text-[56px] xl:w-[766px] xl:text-[70px] xl:leading-[69px] ${PIN}`}
           style={pin(337, 641)}
         >
           I design software that gets out of your way
         </p>
 
-        <div className={`flex flex-wrap items-center justify-center gap-4 sm:gap-[27.16px] ${PIN}`} style={pin(460.37, 840.05)}>
-          <PillLink href={links.resume} color="#bae6ff" style={{ transform: "rotate(0.54deg)" }}>
-            Resume
-            <Image src="/figma/icon-download.png" alt="" width={37} height={37} className="size-[28px] sm:size-[37px]" />
-          </PillLink>
-          <PillLink href="#contact" color="#ffdc58">
-            Let’s talk
-          </PillLink>
+        <div
+          data-anim="cta"
+          className={`flex flex-wrap items-center justify-center gap-4 sm:gap-[27.16px] ${PIN}`}
+          style={pin(460.37, 840.05)}
+        >
+          <Magnetic>
+            <PillLink href={links.resume} color="#bae6ff" style={{ transform: "rotate(0.54deg)" }}>
+              Resume
+              <Image src="/figma/icon-download.png" alt="" width={37} height={37} className="size-[28px] sm:size-[37px]" />
+            </PillLink>
+          </Magnetic>
+          <Magnetic>
+            <PillLink href="#contact" newTab={false} color="#ffdc58">
+              Let’s talk
+            </PillLink>
+          </Magnetic>
         </div>
       </div>
     </section>

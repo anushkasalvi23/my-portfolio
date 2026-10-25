@@ -21,6 +21,7 @@ const techStickers = [
 function TerminalWindow() {
   return (
     <div
+      data-anim="terminal"
       className={`relative w-full max-w-[708px] rounded-[12px] bg-[#141414] px-5 pt-[100px] pb-14 shadow-[0px_8px_14px_-4px_rgba(0,0,0,0.25)] sm:px-[34px] xl:h-[349px] xl:w-[708px] xl:pt-[134px] xl:pb-0 ${PIN}`}
       style={pin(X(364), 191)}
     >
@@ -36,16 +37,21 @@ function TerminalWindow() {
         className="absolute top-[24px] left-[70px] h-[18.223px] w-[77.841px] max-w-none"
       />
       <pre className="overflow-x-auto font-mono text-[13px] leading-[0.995] whitespace-pre text-sun sm:text-[22px] xl:overflow-visible xl:text-[29px]">
-        <span className="block text-[16px] sm:text-[24px] xl:text-[30px]">$ anushka --status</span>
+        <span data-term="cmd" className="block text-[16px] sm:text-[24px] xl:text-[30px]">
+          $ anushka --status
+        </span>
         <span className="mt-[9px] block">
           {status.map((line) => (
-            <span key={line.key} className="mb-[6px] block">
-              <span style={{ color: line.color }}>{line.key}:</span> {line.value}
+            <span key={line.key} data-term="line" className="mb-[6px] block">
+              <span style={{ color: line.color }}>{line.key}:</span> <span data-term="value">{line.value}</span>
             </span>
           ))}
+          <span aria-hidden className="animate-blink">
+            ▍
+          </span>
         </span>
       </pre>
-      <div className="absolute top-[304px] left-[666px] hidden xl:block">
+      <div data-anim="pop" className="absolute top-[304px] left-[666px] hidden xl:block">
         <Rotated box={[83.014, 72.324]} inner={[69.791, 56.1]} transform="rotate(15.34deg) skewX(-0.92deg)">
           <div className="size-full rounded-[13px] bg-[rgba(254,254,254,0.93)] shadow-[1px_6px_11px_0px_rgba(0,0,0,0.3)]" />
         </Rotated>
@@ -83,6 +89,7 @@ export function Terminal() {
         inner={[83.81, 34.03]}
         transform="rotate(-141.77deg) scaleX(-1)"
         desktopOnly
+        anim="draw"
         className="pointer-events-none absolute"
         style={at(X(270.07), 182.97)}
       >
@@ -94,6 +101,7 @@ export function Terminal() {
 
       <div className="flex items-center gap-6 xl:contents">
         <p
+          data-anim="reveal"
           className={`relative font-scribble text-[40px] leading-[normal] whitespace-nowrap text-black sm:text-[48px] ${PIN}`}
           style={pin(X(587), 74)}
         >
@@ -103,12 +111,16 @@ export function Terminal() {
             alt=""
             width={165.893}
             height={18.02}
+            data-anim="draw"
             className="absolute top-[66px] left-[18px] h-[18.02px] w-[165.893px] max-w-none max-sm:hidden"
           />
         </p>
         <a
           href={links.github}
+          target="_blank"
+          rel="noopener noreferrer"
           aria-label="GitHub"
+          data-anim="reveal"
           className={`relative block h-[74px] w-[76px] shrink-0 transition-transform duration-200 hover:-translate-y-1 ${PIN}`}
           style={pin(X(815), 72)}
         >
@@ -124,7 +136,7 @@ export function Terminal() {
             className="absolute top-[11.56px] left-[14.25px] h-[55.5px] w-[51.063px] object-contain"
           />
         </a>
-        <div className="absolute hidden h-[35px] w-[31px] xl:block" style={at(X(906), 132)}>
+        <div data-anim="wiggle" className="absolute hidden h-[35px] w-[31px] xl:block" style={at(X(906), 132)}>
           <Fill src="/figma/cursor-small.svg" inset="-8.7% -12.08% -9.95% -6.81%" />
         </div>
       </div>

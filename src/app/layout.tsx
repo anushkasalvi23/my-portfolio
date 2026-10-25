@@ -61,8 +61,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     .join(" ");
 
   return (
-    <html lang="en" className={`${fonts} antialiased`}>
-      <body className="font-sans">{children}</body>
+    <html lang="en" className={`${fonts} antialiased`} suppressHydrationWarning>
+      <body className="font-sans">
+        <noscript>
+          <style>{"#top [data-anim] { visibility: visible !important; }"}</style>
+        </noscript>
+        {children}
+      </body>
     </html>
   );
 }

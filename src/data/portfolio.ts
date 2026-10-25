@@ -2,11 +2,11 @@
 // Figma design — replace them with the real URLs.
 
 export const links = {
-  linkedin: "#",
-  github: "#",
+  linkedin: "https://www.linkedin.com/in/anushkasalvi23/",
+  github: "https://github.com/anushkasalvi23/",
   leetcode: "#",
   email: "mailto:hello@example.com",
-  resume: "#",
+  resume: "/Project/Resume%20With%20Photo.pdf",
 };
 
 /** Shown in the "good at" grid; the design lists 6 even though 4 cards are featured. */
@@ -103,30 +103,13 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "AI-Based Doc Summarizer",
-    description: "Turn PDFs, Word files, and images into summaries, entity cards, and sentiment insights.",
+    title: "Voice Cloning System",
+    description: "A real-time voice cloning system that learns vocal characteristics and generates natural speech.",
     tags: ["ML", "RAG", "LLM"],
-    status: "Completed",
+    status: "In progress",
     href: "#",
-    repo: "#",
-    image: { src: "/figma/project-doc-summarizer.png", left: 28, top: 48, width: 475, height: 295, border: 4 },
-  },
-  {
-    title: "AI Teaching Assistant",
-    description: "Helps students ask questions naturally and get level-based answers.",
-    tags: ["ML", "RAG", "LLM"],
-    status: "Completed",
-    href: "#",
-    repo: "#",
-    image: {
-      src: "/figma/project-ai-teaching-assistant.png",
-      left: 35.59,
-      top: 45.02,
-      width: 463.766,
-      height: 293.125,
-      border: 4.416,
-      crop: "left-[0.12%] top-[0.1%] h-[99.75%] w-[115.61%]",
-    },
+    repo: "https://github.com/anushkasalvi23/AI-Voice-Cloning",
+    image: { src: "/Project/Ai-voice-Cloning.png", left: 35.59, top: 45.02, width: 463.766, height: 293.125, border: 4.416 },
     tallBorder: true,
   },
   {
@@ -136,25 +119,35 @@ export const projects: Project[] = [
     tags: ["ML", "RAG", "LLM"],
     status: "In progress",
     href: "#",
-    repo: "#",
-    image: {
-      src: "/figma/project-milk-adulteration.png",
-      left: 36,
-      top: 32,
-      width: 463,
-      height: 324,
-      border: 5,
-      crop: "left-[-0.03%] top-0 h-full w-[144.07%]",
-    },
+    // No public repo for this one yet — falls back to the GitHub profile.
+    repo: "https://github.com/anushkasalvi23/",
+    image: { src: "/Project/Milk-Adulteration-System.png", left: 36, top: 32, width: 463, height: 324, border: 5 },
   },
   {
-    title: "Voice Cloning System",
-    description: "A real-time voice cloning system that learns vocal characteristics and generates natural speech.",
+    title: "AI-Based Doc Summarizer",
+    description: "Turn PDFs, Word files, and images into summaries, entity cards, and sentiment insights.",
     tags: ["ML", "RAG", "LLM"],
-    status: "In progress",
+    status: "Completed",
     href: "#",
-    repo: "#",
-    image: { src: "/figma/project-voice-cloning.png", left: 35.59, top: 45.02, width: 463.766, height: 293.125, border: 4.416 },
+    repo: "https://github.com/anushkasalvi23/Document-Analysis-API",
+    image: { src: "/figma/project-doc-summarizer.png", left: 28, top: 48, width: 475, height: 295, border: 4 },
+  },
+  {
+    title: "AI Teaching Assistant",
+    description: "Helps students ask questions naturally and get level-based answers.",
+    tags: ["ML", "RAG", "LLM"],
+    status: "Completed",
+    href: "#",
+    repo: "https://github.com/anushkasalvi23/AI-Teaching-Assistant",
+    image: {
+      src: "/figma/project-ai-teaching-assistant.png",
+      left: 35.59,
+      top: 45.02,
+      width: 463.766,
+      height: 293.125,
+      border: 4.416,
+      crop: "left-[0.12%] top-[0.1%] h-[99.75%] w-[115.61%]",
+    },
     tallBorder: true,
   },
 ];

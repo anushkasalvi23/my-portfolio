@@ -9,6 +9,7 @@ function SketchLines() {
       inner={[length, 2]}
       transform="rotate(-90deg)"
       desktopOnly
+      anim="draw-y"
       className="pointer-events-none absolute"
       style={{ left, top }}
     >
@@ -16,7 +17,7 @@ function SketchLines() {
     </Rotated>
   );
   const horizontal = (src: string, left: number, top: number) => (
-    <div aria-hidden className="pointer-events-none absolute hidden h-[2px] w-[849px] xl:block" style={{ left, top }}>
+    <div aria-hidden data-anim="draw" className="pointer-events-none absolute hidden h-[2px] w-[849px] xl:block" style={{ left, top }}>
       <Fill src={src} />
     </div>
   );
@@ -47,6 +48,7 @@ export function Education() {
     <section className="relative px-4 pt-20 pb-16 sm:px-8 xl:h-[892px] xl:p-0">
       <div className="flex items-center gap-4 xl:contents">
         <h2
+          data-anim="heading"
           className={`text-[36px] leading-[normal] font-medium whitespace-nowrap text-black md:text-[48px] ${PIN}`}
           style={pin(101, 66)}
         >
@@ -63,6 +65,7 @@ export function Education() {
         inner={[107.755, 48.7]}
         transform="rotate(-155.22deg)"
         desktopOnly
+        anim="draw"
         className="pointer-events-none absolute"
         style={at(358, 281)}
       >
@@ -73,7 +76,7 @@ export function Education() {
 
       <div className={`relative mt-10 xl:mt-0 xl:h-[657px] xl:w-[864px] ${PIN}`} style={pin(510, 179)}>
         <SketchLines />
-        <ol className="flex flex-col gap-10 xl:gap-[91px] xl:pt-[82px] xl:pl-[76px]">
+        <ol data-anim="stagger" className="flex flex-col gap-10 xl:gap-[91px] xl:pt-[82px] xl:pl-[76px]">
           {education.map((item, i) => (
             <li
               key={item.school}
@@ -82,7 +85,7 @@ export function Education() {
               }`}
             >
               <span
-                className="flex h-[101px] w-[113px] shrink-0 items-center justify-center rounded-[6px] border-2 font-handlee text-[48px] leading-[1.5] tracking-[-1.056px] text-black"
+                className="flex h-[101px] w-[113px] shrink-0 transition-transform duration-300 hover:-rotate-6 hover:scale-105 items-center justify-center rounded-[6px] border-2 font-handlee text-[48px] leading-[1.5] tracking-[-1.056px] text-black"
                 style={{ backgroundColor: item.badge.bg, borderColor: item.badge.border }}
               >
                 {i + 1}

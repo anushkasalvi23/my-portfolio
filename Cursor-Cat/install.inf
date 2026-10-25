@@ -1,0 +1,20 @@
+[Version]
+signature="$CHICAGO$"
+
+[DefaultInstall]
+CopyFiles = Scheme.Cur
+AddReg = Scheme.Reg
+
+[DestinationDirs]
+Scheme.Cur = 25,Cursors
+
+[Scheme.Cur]
+Pusheen the Cat with Laptop Cursor--pointer--Sweez.cur
+Pusheen the Cat with Laptop Cursor--cursor--Sweezy.cur
+
+[Scheme.Reg]
+HKCU,"Control Panel\Cursors","Hand",,"%25%\Cursors\Pusheen the Cat with Laptop Cursor--pointer--Sweez.cur"
+HKCU,"Control Panel\Cursors","Arrow",,"%25%\Cursors\Pusheen the Cat with Laptop Cursor--cursor--Sweezy.cur"
+; Set scheme name
+HKCU,"Control Panel\Cursors","(Default)",,"Pusheen the cat with laptop"
+HKCU,"Control Panel\Cursors\Schemes","Pusheen the cat with laptop",,""

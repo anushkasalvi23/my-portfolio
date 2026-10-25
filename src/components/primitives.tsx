@@ -32,6 +32,7 @@ export function Rotated({
   inner,
   transform,
   desktopOnly = false,
+  anim,
   className = "",
   style,
   children,
@@ -41,12 +42,15 @@ export function Rotated({
   transform: string;
   /** Hide below the `xl` breakpoint, where the free-form composition collapses. */
   desktopOnly?: boolean;
+  /** Hook for the GSAP choreography in `PageAnimations`. */
+  anim?: string;
   className?: string;
   style?: CSSProperties;
   children: ReactNode;
 }) {
   return (
     <div
+      data-anim={anim}
       className={`${desktopOnly ? "hidden xl:flex" : "flex"} items-center justify-center ${className}`}
       style={{ width: box[0], height: box[1], ...style }}
     >
@@ -95,6 +99,7 @@ export function Sticker({
   color,
   font = "scribble",
   desktopOnly = false,
+  anim = "pop",
   className = "",
   style,
 }: {
@@ -102,6 +107,7 @@ export function Sticker({
   color: string;
   font?: "scribble" | "handlee";
   desktopOnly?: boolean;
+  anim?: string;
   className?: string;
   style?: CSSProperties;
 }) {
@@ -111,6 +117,7 @@ export function Sticker({
       : "font-scribble text-[40px] leading-[0.995] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]";
   return (
     <div
+      data-anim={anim}
       className={`${desktopOnly ? "hidden xl:flex" : "flex"} whitespace-nowrap text-ink ${type} ${className}`}
       style={{ backgroundColor: color, ...style }}
     >
@@ -127,6 +134,7 @@ export function Smiley({ className = "", style }: { className?: string; style?: 
       box={[72.671, 68.194]}
       inner={[64.283, 58.903]}
       transform="rotate(8.96deg)"
+      anim="pop"
       className={className}
       style={style}
     >
@@ -152,7 +160,7 @@ export function Starburst({
   style?: CSSProperties;
 }) {
   return (
-    <div aria-hidden className={`pointer-events-none absolute ${className}`} style={{ width, height, ...style }}>
+    <div aria-hidden data-anim="pop" className={`pointer-events-none absolute ${className}`} style={{ width, height, ...style }}>
       <div className="relative size-full -scale-y-100">
         <Fill src={src} inset={`0 0 -${bleed} 0`} />
       </div>
@@ -177,6 +185,7 @@ export function SunSticker({
       inner={pink ? [143.482, 149.353] : [112.826, 117.442]}
       transform="rotate(55.01deg)"
       desktopOnly
+      anim="pop"
       className={`pointer-events-none ${className}`}
       style={style}
     >
@@ -193,6 +202,7 @@ export function CurlyArrow({ transform, className = "", style }: { transform: st
       inner={[83.944, 84.646]}
       transform={transform}
       desktopOnly
+      anim="draw"
       className={`pointer-events-none ${className}`}
       style={style}
     >
@@ -213,6 +223,7 @@ export function Tape({ side, style }: { side: "left" | "right"; style?: CSSPrope
       box={[101.737, 86]}
       inner={[100.326, 34.354]}
       transform={left ? "rotate(-35.29deg)" : "rotate(-144.71deg) scaleY(-1)"}
+      anim="tape"
       className="pointer-events-none absolute z-10"
       style={style}
     >
@@ -227,7 +238,7 @@ export function Tape({ side, style }: { side: "left" | "right"; style?: CSSPrope
 /** Thick black rule that spans the full viewport width. */
 export function ThickRule({ className = "" }: { className?: string }) {
   return (
-    <div aria-hidden className={`pointer-events-none relative h-[6px] w-full ${className}`}>
+    <div aria-hidden data-anim="draw" className={`pointer-events-none relative h-[6px] w-full ${className}`}>
       <Image src="/figma/rule-thick.svg" alt="" fill className="max-w-none" />
     </div>
   );

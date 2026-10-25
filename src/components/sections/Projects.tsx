@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { projects, type Project } from "@/data/portfolio";
+import { Magnetic, TiltCard } from "../motion/Interactive";
 import { Fill, Starburst, SunSticker, Tape } from "../primitives";
 
 // Design dimensions of a project card and its screenshot area.
@@ -21,7 +22,7 @@ const statusStyles = {
 function ProjectCard({ project }: { project: Project }) {
   const { image } = project;
   return (
-    <article className="relative w-full max-w-[536px] bg-white drop-shadow-[-9.422px_10.469px_0px_rgba(0,0,0,0.44)]">
+    <article className="group relative w-full max-w-[536px] bg-white drop-shadow-[-9.422px_10.469px_0px_rgba(0,0,0,0.44)]">
       {/* Sketchy hand-drawn outline that overshoots the card edges */}
       <div aria-hidden className="pointer-events-none absolute top-[-13.61px] right-[-19.888px] bottom-[-15.703px] left-[-17.8px]">
         <Fill
@@ -45,10 +46,22 @@ function ProjectCard({ project }: { project: Project }) {
         >
           {image.crop ? (
             <div className={`absolute ${image.crop}`}>
-              <Image src={image.src} alt={`${project.title} screenshot`} fill sizes="(min-width: 640px) 670px, 100vw" className="max-w-none" />
+              <Image
+                src={image.src}
+                alt={`${project.title} screenshot`}
+                fill
+                sizes="(min-width: 640px) 670px, 100vw"
+                className="max-w-none transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+              />
             </div>
           ) : (
-            <Image src={image.src} alt={`${project.title} screenshot`} fill sizes="(min-width: 640px) 475px, 90vw" className="object-cover" />
+            <Image
+              src={image.src}
+              alt={`${project.title} screenshot`}
+              fill
+              sizes="(min-width: 640px) 475px, 90vw"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+            />
           )}
         </div>
       </div>
@@ -59,20 +72,18 @@ function ProjectCard({ project }: { project: Project }) {
           <a
             href={project.href}
             aria-label={`Open ${project.title}`}
-            className="relative size-[38px] shrink-0 bg-black shadow-[4px_4px_0px_0px_#8e8f87] transition-transform duration-200 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#8e8f87]"
+            className="relative size-[38px] shrink-0 overflow-hidden bg-black shadow-[4px_4px_0px_0px_#8e8f87] transition-transform duration-200 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#8e8f87]"
           >
             <Image
               src="/figma/icon-arrow-up-right.svg"
               alt=""
               width={24.359}
               height={24.584}
-              className="absolute top-[7px] left-[7px] h-[24.584px] w-[24.359px] max-w-none"
+              className="absolute top-[7px] left-[7px] h-[24.584px] w-[24.359px] max-w-none transition-transform duration-300 group-hover:translate-x-[3px] group-hover:-translate-y-[3px]"
             />
           </a>
         </div>
-        <p className="mt-[14px] max-w-[456px] text-[16px] leading-[normal] font-medium text-black sm:text-[18px]">
-          {project.description}
-        </p>
+        <p className="mt-[14px] max-w-[456px] text-[16px] leading-[normal] font-medium text-black sm:text-[18px]">{project.description}</p>
         <ul className="mt-[15px] flex gap-[12px]">
           {project.tags.map((tag) => (
             <li
@@ -86,7 +97,12 @@ function ProjectCard({ project }: { project: Project }) {
         </ul>
         <Image src="/figma/project-divider.png" alt="" width={463} height={1} className="mt-[16px] h-px w-full" />
         <div className="mt-[14px] flex items-center justify-between">
-          <a href={project.repo} className="flex items-center gap-[6px] text-[20px] leading-[normal] text-black hover:underline">
+          <a
+            href={project.repo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-[6px] text-[20px] leading-[normal] text-black hover:underline"
+          >
             <Image src="/figma/icon-github.png" alt="" width={38} height={39} className="h-[39px] w-[38px] object-contain" />
             GitHub
           </a>
@@ -107,13 +123,17 @@ export function Projects() {
       <Starburst src="/figma/sticker-star-pink-alt.svg" className="hidden xl:block" style={{ right: -8, top: 1690 }} />
 
       <div className="relative mx-auto h-[110px] w-fit sm:h-[160px] xl:w-[664px] xl:translate-x-[15px]">
-        <h2 className="relative pt-[20px] text-[48px] leading-[normal] text-black font-medium sm:pt-[41px] sm:text-[80px]">
+        <h2
+          data-anim="heading"
+          className="relative pt-[20px] text-[48px] leading-[normal] text-black font-medium sm:pt-[41px] sm:text-[80px]"
+        >
           My Projects
           <Image
             src="/figma/underline-projects.svg"
             alt=""
             width={358}
             height={15}
+            data-anim="draw"
             className="absolute top-[76px] left-[87px] h-[9px] w-[215px] max-w-none sm:top-[135px] sm:left-[145px] sm:h-[15px] sm:w-[358px]"
           />
         </h2>
@@ -122,18 +142,28 @@ export function Projects() {
 
       <div className="mx-auto mt-16 grid max-w-[1205px] justify-items-center gap-x-[133px] gap-y-24 sm:mt-[78px] xl:translate-x-[2.5px] xl:grid-cols-2 xl:gap-y-[116px]">
         {projects.map((project) => (
-          <ProjectCard key={project.title} project={project} />
+          <div key={project.title} data-anim="card" className="w-full max-w-[536px]">
+            <TiltCard>
+              <ProjectCard project={project} />
+            </TiltCard>
+          </div>
         ))}
       </div>
 
-      <div className="relative mx-auto mt-[93px] w-fit xl:translate-x-[11.5px]">
-        <a
-          href="#projects"
-          className="flex h-[88px] w-[260px] items-center justify-center rounded-[13px] border-t-5 border-r-12 border-b-10 border-l-5 border-white bg-[#ffdc02] font-inter text-[34px] leading-[normal] font-medium text-black transition-transform duration-200 hover:-translate-y-1 sm:h-[104px] sm:w-[303px] sm:text-[40px]"
+      <div data-anim="reveal" className="relative mx-auto mt-[93px] w-fit xl:translate-x-[11.5px]">
+        <Magnetic>
+          <a
+            href="#projects"
+            className="flex h-[88px] w-[260px] items-center justify-center rounded-[13px] border-t-5 border-r-12 border-b-10 border-l-5 border-white bg-[#ffdc02] font-inter text-[34px] leading-[normal] font-medium text-black transition-transform duration-200 hover:-translate-y-1 sm:h-[104px] sm:w-[303px] sm:text-[40px]"
+          >
+            View more
+          </a>
+        </Magnetic>
+        <div
+          aria-hidden
+          data-anim="wiggle"
+          className="pointer-events-none absolute top-[104px] left-[315px] hidden h-[75px] w-[66px] sm:block"
         >
-          View more
-        </a>
-        <div aria-hidden className="pointer-events-none absolute top-[104px] left-[315px] hidden h-[75px] w-[66px] sm:block">
           <Fill src="/figma/cursor-large.svg" inset="0 0 0 -1.52%" />
         </div>
       </div>
