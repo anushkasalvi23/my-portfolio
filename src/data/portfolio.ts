@@ -17,8 +17,6 @@ export const location = "Pune, India";
 export const openTo = "Internships, freelance";
 
 export const about = {
-  /** Portrait in /public (path is case-sensitive once deployed). */
-  photo: "/Profile.jpeg" as string | null,
   bio: [
     "I’m Anushka, a software developer and designer from Pune, currently studying for a B.Tech in Computer Science (AI) at Vishwakarma Institute of Technology.",
     "I work across the stack: MERN web apps, database design, and AI/ML systems like real-time voice cloning and document summarisation. I care just as much about how those things look and feel, so I usually start in Figma and finish in code.",

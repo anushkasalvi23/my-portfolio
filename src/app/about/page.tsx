@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { about, links, toolbox } from "@/data/portfolio";
 import { Magnetic } from "@/components/motion/Interactive";
-import { Smiley, Starburst, Tape } from "@/components/primitives";
+import { Smiley, Starburst } from "@/components/primitives";
 import { Contact } from "@/components/sections/Contact";
 import { Education } from "@/components/sections/Education";
 import { Experience } from "@/components/sections/Experience";
@@ -14,56 +14,29 @@ export const metadata: Metadata = {
   description: "Who Anushka Salvi is: a software developer and designer from Pune working across full-stack, databases, UI/UX and AI/ML.",
 };
 
-function Polaroid() {
-  return (
-    <div data-anim="reveal" className="relative mx-auto w-full max-w-[420px]">
-      <figure className="relative -rotate-3 border-4 border-black bg-white p-[20px] pb-[18px] shadow-[14px_14px_0px_0px_rgba(0,0,0,0.4)] transition-transform duration-500 hover:rotate-0">
-        <Tape side="left" style={{ left: -42, top: -36 }} />
-        <Tape side="right" style={{ right: -42, top: -36 }} />
-        <div className="relative aspect-[3/4] overflow-hidden border-4 border-black bg-sun">
-          {about.photo ? (
-            <Image src={about.photo} alt="Portrait of Anushka Salvi" fill priority sizes="(min-width: 1024px) 380px, 90vw" className="object-cover" />
-          ) : (
-            <div aria-hidden className="grid size-full place-items-center">
-              <span className="font-pixel text-[240px] leading-none font-semibold text-black" style={{ fontVariationSettings: '"ELGR" 1, "ELSH" 2' }}>
-                A
-              </span>
-              <Image src="/figma/logo-sparkle.svg" alt="" width={49} height={49} className="absolute top-6 right-6 size-[56px]" />
-            </div>
-          )}
-        </div>
-        <figcaption className="mt-3 text-center font-scribble text-[44px] leading-none text-black">that’s me!</figcaption>
-      </figure>
-    </div>
-  );
-}
-
 function Bio() {
   return (
     <section className="relative px-4 py-16 sm:px-8 xl:px-0 xl:pt-[70px] xl:pb-[120px]">
-      <div className="mx-auto grid max-w-[1209px] items-start gap-16 xl:grid-cols-[420px_minmax(0,1fr)] xl:gap-[110px]">
-        <Polaroid />
-        <div>
-          <div className="flex items-center gap-4">
-            <h2 data-anim="heading" className="text-[36px] leading-[normal] font-medium text-black md:text-[48px]">
-              A little about me
-            </h2>
-            <Smiley />
-          </div>
-          <div data-anim="stagger" className="mt-8 flex flex-col gap-6 font-inter text-[20px] leading-[1.5] text-ink sm:text-[24px]">
-            {about.bio.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-          <dl data-anim="reveal" className="mt-12 grid gap-[3px] border-3 border-black bg-black sm:grid-cols-2">
-            {about.facts.map((fact) => (
-              <div key={fact.label} className="px-6 py-5" style={{ backgroundColor: fact.color }}>
-                <dt className="font-dm-mono text-[15px] tracking-[0.06em] text-black/70 uppercase">{fact.label}</dt>
-                <dd className="mt-2 text-[22px] leading-[1.25] font-bold text-black sm:text-[24px]">{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
+      <div className="mx-auto max-w-[1209px]">
+        <div className="flex items-center gap-4">
+          <h2 data-anim="heading" className="text-[36px] leading-[normal] font-medium text-black md:text-[48px]">
+            A little about me
+          </h2>
+          <Smiley />
         </div>
+        <div data-anim="stagger" className="mt-8 flex flex-col gap-6 font-inter text-[20px] leading-[1.5] text-ink sm:text-[24px]">
+          {about.bio.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+        <dl data-anim="reveal" className="mt-12 grid gap-[3px] border-3 border-black bg-black sm:grid-cols-2">
+          {about.facts.map((fact) => (
+            <div key={fact.label} className="px-6 py-5" style={{ backgroundColor: fact.color }}>
+              <dt className="font-dm-mono text-[15px] tracking-[0.06em] text-black/70 uppercase">{fact.label}</dt>
+              <dd className="mt-2 text-[22px] leading-[1.25] font-bold text-black sm:text-[24px]">{fact.value}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );
