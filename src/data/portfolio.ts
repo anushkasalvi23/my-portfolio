@@ -22,7 +22,7 @@ export const about = {
   bio: [
     "I’m Anushka, a software developer and designer from Pune, currently studying for a B.Tech in Computer Science (AI) at Vishwakarma Institute of Technology.",
     "I work across the stack: MERN web apps, database design, and AI/ML systems like real-time voice cloning and document summarisation. I care just as much about how those things look and feel, so I usually start in Figma and finish in code.",
-    "My internships have taken me from building REST APIs and MongoDB schemas to designing LMS screens with a product team. Right now I’m going deeper into deep learning and looking for my next good problem.",
+    "My internships have taken me from building REST APIs and MongoDB schemas to developing frontend and backend features for a learning management system. Right now I’m going deeper into deep learning and looking for my next good problem.",
   ],
   facts: [
     { label: "Based in", value: location, color: "#ffdc58" },
@@ -108,11 +108,11 @@ export const experience = [
     company: "Lumenith Technology",
     period: "Oct 2025 – Feb 2026",
     location: "Pune",
-    role: "Graphic Designer Intern",
+    role: "Software Developer Intern",
     dot: "/figma/timeline-dot-yellow.svg",
     points: [
-      "Designed wireframes and high-fidelity UI screens in Figma for the LearnComplexity LMS, keeping layouts consistent and easy to use.",
-      "Worked with the design and marketing teams to align product interfaces with brand guidelines, user needs and platform goals.",
+      "Developed features for LearnComplexity, a Learning Management System (LMS), working across frontend and backend modules.",
+      "Optimized multiple platform workflows and processes to improve efficiency and reduce manual effort.",
     ],
   },
   {
