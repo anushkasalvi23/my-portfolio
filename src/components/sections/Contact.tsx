@@ -1,9 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 import { links } from "@/data/portfolio";
 import { Magnetic } from "../motion/Interactive";
 import { Fill, Logo, Rotated, ThickRule } from "../primitives";
 
-export function Contact() {
+/** `href` is where the button goes: the mail app by default, or the contact page. */
+export function Contact({ href = links.email, label = "Send me message" }: { href?: string; label?: string }) {
+  const Anchor = href.startsWith("/") ? Link : "a";
   return (
     <section id="contact" className="px-4 pt-[20px] sm:px-8 xl:px-0">
       <div
@@ -18,13 +21,13 @@ export function Contact() {
         </p>
         <div className="relative mx-auto mt-10 w-fit xl:mt-[53px] xl:translate-x-[23.5px]">
           <Magnetic>
-            <a
-              href={links.email}
+            <Anchor
+              href={href}
               className="flex h-[76px] items-center justify-center rounded-[92px] border-[6px] border-black bg-sky px-8 text-[22px] leading-[normal] font-bold whitespace-nowrap transition-transform duration-200 hover:-translate-y-1 sm:h-[97px] sm:w-[361px] sm:border-8 sm:px-[55px] sm:text-[29px]"
               style={{ transform: "rotate(0.54deg)" }}
             >
-              Send me message
-            </a>
+              {label}
+            </Anchor>
           </Magnetic>
           <Rotated
             box={[76.486, 89.147]}
@@ -57,7 +60,12 @@ export function Footer() {
         className="mx-auto flex max-w-[1244px] flex-col items-center gap-6 px-4 pt-10 pb-10 sm:px-8 md:flex-row md:justify-between xl:translate-x-[11px] xl:px-0 xl:pt-[49px] xl:pb-[26px]"
       >
         <Logo />
-        <p className="text-[22px] leading-[normal] font-medium text-black md:text-[32px]">© 2026 Anushka Salvi</p>
+        <nav aria-label="Footer" className="flex gap-6 text-[22px] font-medium text-black md:text-[26px]">
+          <Link href="/about" className="hover:underline">About</Link>
+          <Link href="/projects" className="hover:underline">Projects</Link>
+          <Link href="/contact" className="hover:underline">Contact</Link>
+        </nav>
+        <p className="text-[22px] leading-[normal] font-medium text-black md:text-[24px]">© 2026 Anushka Salvi</p>
         <ul className="flex items-center gap-[30px]">
           {footerSocials.map((s) => (
             <li key={s.label}>

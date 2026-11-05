@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { projectCount, services, skills } from "@/data/portfolio";
 import { at, Rotated, Fill, Smiley, Starburst, Sticker } from "../primitives";
 
@@ -56,13 +57,13 @@ function ServiceCard({ service, index }: { service: (typeof services)[number]; i
         <h3 className="max-w-[339px] text-[28px] leading-[normal] font-bold text-black xl:text-[36px]">{service.title}</h3>
         <p className="max-w-[339px] text-[20px] leading-[normal] font-medium text-black xl:text-[24px]">{service.description}</p>
       </div>
-      <a
-        href="#projects"
+      <Link
+        href="/projects"
         className={`border-b-3 border-black px-6 py-5 text-[28px] leading-[normal] font-medium text-black transition-[filter] duration-200 hover:brightness-95 md:py-[31px] md:pl-[26px] xl:text-[36px] ${sides}`}
         style={{ backgroundColor: service.footer }}
       >
         Learn more
-      </a>
+      </Link>
     </article>
   );
 }

@@ -25,7 +25,7 @@ export default function Home() {
         <Terminal />
         <Experience />
         <Projects />
-        <Contact />
+        <Contact href="/contact" />
         <Footer />
       </main>
       <PageAnimations />

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 
 /** Width of the Figma frame every coordinate below is measured against. */
@@ -247,9 +248,9 @@ export function ThickRule({ className = "" }: { className?: string }) {
 /** Sparkle logo + wordmark. */
 export function Logo({ className = "" }: { className?: string }) {
   return (
-    <a href="#top" className={`flex items-center gap-[15px] text-ink ${className}`}>
+    <Link href="/" aria-label="Anushka Salvi, home" className={`flex items-center gap-[15px] text-ink ${className}`}>
       <Image src="/figma/logo-sparkle.svg" alt="" width={48.956} height={49} className="h-[34px] w-auto md:h-[49px]" />
       <span className="text-[26px] max-sm:sr-only md:text-[36px]">Anush</span>
-    </a>
+    </Link>
   );
 }

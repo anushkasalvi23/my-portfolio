@@ -1,13 +1,54 @@
 // Content for the portfolio page. Links marked "#" were not specified in the
 // Figma design — replace them with the real URLs.
 
+export const emailAddress = "anushka.salvi.93@gmail.com";
+
 export const links = {
   linkedin: "https://www.linkedin.com/in/anushkasalvi23/",
   github: "https://github.com/anushkasalvi23/",
-  leetcode: "#",
-  email: "mailto:hello@example.com",
+  leetcode: "https://leetcode.com/u/Anushka_Salvi/",
+  email: `mailto:${emailAddress}`,
   resume: "/Project/Resume%20With%20Photo.pdf",
 };
+
+export const location = "Pune, India";
+
+/** What the "available for" status lines say (About + Contact pages). */
+export const openTo = "Internships, freelance";
+
+export const about = {
+  /** Portrait in /public (path is case-sensitive once deployed). */
+  photo: "/Profile.jpeg" as string | null,
+  bio: [
+    "I’m Anushka, a software developer and designer from Pune, currently studying for a B.Tech in Computer Science (AI) at Vishwakarma Institute of Technology.",
+    "I work across the stack: MERN web apps, database design, and AI/ML systems like real-time voice cloning and document summarisation. I care just as much about how those things look and feel, so I usually start in Figma and finish in code.",
+    "My internships have taken me from building REST APIs and MongoDB schemas to designing LMS screens with a product team. Right now I’m going deeper into deep learning and looking for my next good problem.",
+  ],
+  facts: [
+    { label: "Based in", value: location, color: "#ffdc58" },
+    { label: "Studying", value: "B.Tech CSE (AI)", color: "#bae6ff" },
+    { label: "Currently learning", value: "Deep learning", color: "#ffc9f0" },
+    { label: "Open to", value: openTo, color: "#b1ffcd" },
+  ],
+};
+
+export const toolbox = [
+  {
+    group: "AI & ML",
+    color: "#bae6ff",
+    items: ["Python", "TensorFlow", "PyTorch", "RAG", "LLMs", "Text-to-Speech"],
+  },
+  {
+    group: "Web & Data",
+    color: "#ffdc58",
+    items: ["MongoDB", "Express", "React", "Node.js", "REST APIs", "Git & GitHub"],
+  },
+  {
+    group: "Design",
+    color: "#ffc9f0",
+    items: ["Figma", "Wireframing", "High-fidelity UI", "Brand guidelines"],
+  },
+];
 
 /** Shown in the "good at" grid; the design lists 6 even though 4 cards are featured. */
 export const projectCount = 6;
@@ -114,8 +155,7 @@ export const projects: Project[] = [
   },
   {
     title: "Milk Adulteration System",
-    // Copy is as provided in the design (it duplicates the Doc Summarizer text).
-    description: "Turn PDFs, Word files, and images into summaries, entity cards, and sentiment insights.",
+    description: "Flag adulterated milk from six routine field readings, identify the likely adulterant, and monitor everything in a live dashboard.",
     tags: ["ML", "RAG", "LLM"],
     status: "In progress",
     href: "#",

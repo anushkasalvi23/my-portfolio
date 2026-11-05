@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { projects, type Project } from "@/data/portfolio";
 import { Magnetic, TiltCard } from "../motion/Interactive";
 import { Fill, Starburst, SunSticker, Tape } from "../primitives";
@@ -19,7 +20,7 @@ const statusStyles = {
   "In progress": "bg-[#ffc5c1] border-[#a11c13]",
 };
 
-function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({ project }: { project: Project }) {
   const { image } = project;
   return (
     <article className="group relative w-full max-w-[536px] bg-white drop-shadow-[-9.422px_10.469px_0px_rgba(0,0,0,0.44)]">
@@ -152,12 +153,12 @@ export function Projects() {
 
       <div data-anim="reveal" className="relative mx-auto mt-[93px] w-fit xl:translate-x-[11.5px]">
         <Magnetic>
-          <a
-            href="#projects"
+          <Link
+            href="/projects"
             className="flex h-[88px] w-[260px] items-center justify-center rounded-[13px] border-t-5 border-r-12 border-b-10 border-l-5 border-white bg-[#ffdc02] font-inter text-[34px] leading-[normal] font-medium text-black transition-transform duration-200 hover:-translate-y-1 sm:h-[104px] sm:w-[303px] sm:text-[40px]"
           >
             View more
-          </a>
+          </Link>
         </Magnetic>
         <div
           aria-hidden

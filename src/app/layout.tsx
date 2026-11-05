@@ -50,7 +50,10 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Anushka Salvi — Software Developer & Designer",
+  title: {
+    default: "Anushka Salvi — Software Developer & Designer",
+    template: "%s — Anushka Salvi",
+  },
   description:
     "Portfolio of Anushka Salvi: full-stack development, databases, UI/UX design, and AI/ML.",
 };
@@ -64,7 +67,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" className={`${fonts} antialiased`} suppressHydrationWarning>
       <body className="font-sans">
         <noscript>
-          <style>{"#top [data-anim] { visibility: visible !important; }"}</style>
+          <style>{"#top [data-anim], .page-intro [data-anim] { visibility: visible !important; }"}</style>
         </noscript>
         {children}
       </body>
